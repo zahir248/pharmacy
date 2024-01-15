@@ -19,8 +19,8 @@ if ($userResult) {
     // Get the user_id
     $user_id = $userRow['user_id'];
 
-    // Query to get the count of medicines in the cart for the user
-    $cartQuery = "SELECT COUNT(*) AS cart_count FROM transaction WHERE user_id = $user_id";
+    // Query to get the count of medicines in the cart for the user with status In-cart
+    $cartQuery = "SELECT COUNT(*) AS cart_count FROM transaction WHERE user_id = $user_id AND status = 'In-cart'";
     $cartResult = mysqli_query($conn, $cartQuery);
 
     if ($cartResult) {

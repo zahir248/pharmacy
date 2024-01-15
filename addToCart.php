@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Retrieve parameters from the POST request
     $medicineId = $_POST['medicine_id'];
     $quantity = $_POST['quantity'];
-    $username = $_POST['username']; // Change this to 'username'
+    $username = $_POST['username'];
 
     // Fetch user_id based on the username
     $userQuery = "SELECT user_id FROM user WHERE username = '$username'";
@@ -17,8 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $userId = $userData['user_id'];
 
         // Perform the database insertion into the transaction table
-        $sql = "INSERT INTO transaction (user_id, medicine_id, address, status) 
-                VALUES ('$userId', '$medicineId', null, 'In-cart')"; // Set address to null
+        $sql = "INSERT INTO transaction (user_id, medicine_id, address, status, quantity) 
+                VALUES ('$userId', '$medicineId', null, 'In-cart', '$quantity')";
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
